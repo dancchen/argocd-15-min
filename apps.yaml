@@ -1,15 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: devops-toolkit
-  namespace: argocd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  name: argo-check 
+  namespace: default
 spec:
   project: production
   source:
     path: helm
-    repoURL: https://github.com/vfarcic/argocd-15-min.git
+    repoURL: https://github.com/dancchen/argocd-15-min.git
     targetRevision: HEAD
   destination:
     namespace: production
@@ -18,3 +16,4 @@ spec:
     automated:
       selfHeal: true
       prune: true
+      allowEmpty: true
